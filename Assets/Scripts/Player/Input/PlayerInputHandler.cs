@@ -3,13 +3,26 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public Vector2 RawMovementInput { get; private set; }
+    private Vector2 _rawMovementInput;
     public int NormInputX { get; private set; }
+    public bool JumpPressed { get; private set; }
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        RawMovementInput = context.ReadValue<Vector2>();
+        _rawMovementInput = context.ReadValue<Vector2>();
         
-        NormInputX = (int)(RawMovementInput * Vector2.right).normalized.x;
+        NormInputX = (int)(_rawMovementInput * Vector2.right).normalized.x;
+    }
+
+    public void OnJumpInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            JumpPressed = true;
+        }
+        else if (context.canceled)
+        {
+            JumpPressed = false;
+        }
     }
 }

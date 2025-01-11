@@ -60,7 +60,7 @@ public class Head : MonoBehaviour
     {
         if  (_inputX == -1 && _headAngle.z < 180 && _headAngle.z > 10 || _inputX == 1 && _headAngle.z < 350 && _headAngle.z > 100)
         {
-            _rotationSpeed = 400;
+            _rotationSpeed = 200;
         }
         else
         {
